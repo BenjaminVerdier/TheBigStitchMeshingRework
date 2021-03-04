@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(example)
+project(TheBigStitchMeshingRework)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
@@ -9,7 +9,17 @@ option(LIBIGL_WITH_OPENGL_GLFW       "Use GLFW"           ON)
 
 find_package(LIBIGL REQUIRED QUIET)
 
+#gurobi
+include_directories(
+  # Gurobi
+  "C:/gurobi911/win64/include"
+)
+
+link_directories(
+	"C:/gurobi911/win64/lib"
+)
+
 # Add your project files
 file(GLOB SRCFILES *.cpp)
 add_executable(${PROJECT_NAME} ${SRCFILES})
-target_link_libraries(${PROJECT_NAME} igl::core igl::opengl_glfw)
+target_link_libraries(${PROJECT_NAME} igl::core igl::opengl_glfw gurobi911 gurobi_c++mt2019 gurobi_c++mtd2019)
