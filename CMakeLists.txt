@@ -21,12 +21,13 @@ endif()
 
 # Add your project files
 file(GLOB SRCFILES *.cpp)
+file(GLOB HEADERS *.h)
 
 
-add_executable(${PROJECT_NAME} ${SRCFILES})
+add_executable(${PROJECT_NAME} ${SRCFILES} ${HEADERS})
 
 if (APPLE)
-	target_link_libraries(${PROJECT_NAME} igl::core igl::opengl_glfw libgurobi_c++.a)
+	target_link_libraries(${PROJECT_NAME} igl::core igl::opengl_glfw igl::opengl_glfw_imgui libgurobi_c++.a)
 else ()
 	target_link_libraries(${PROJECT_NAME} igl::core igl::opengl_glfw igl::opengl_glfw_imgui gurobi91 gurobi_c++mt2019 gurobi_c++mtd2019)
 endif()
